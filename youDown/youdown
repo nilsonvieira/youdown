@@ -1,0 +1,24 @@
+#!/bin/bash -x
+
+function FUNC_YOUDOWN () {
+zenity  --forms --title="youDown" \
+                --text="Aplicativos de Download de Vídeos do Youtube" \
+                --separator=";" \
+                --add-entry="Nome do Vídeo: " \
+                --add-entry="Link para Download: " >> /home/$LOGNAME/.youDown
+}
+
+FUNC_YOUDOWN
+
+_NOME=$(cat /home/$LOGNAME/.youDown | cut -d";" -f1)
+_LINK=$(cat /home/$LOGNAME/.youDown | cut -d";" -f2) 
+_LOCAL=/home/$LOGNAME/Vídeos
+rm -rf /home/$LOGNAME/.youDown
+
+if [ $_NOME -z ] && [ $_LINK -z ] && [ $_LOCAL -z ]; then
+	zenity --error --text="Falta Parâmetros" ; FUNC_YOUDOWN
+else
+	cd $_LOCAL
+        youtube-dl -o $_NOME "$_LINK" --merge-output-format mp4 | zenity --progress --title="youDown" --text="Realizando download.. Ao final a janela Fechará" --pulsate --auto-close
+        zenity --info --title=youDown --text="O arquivo está salvo dentro da pasta Vídeos"
+fi

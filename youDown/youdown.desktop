@@ -1,0 +1,12 @@
+#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=false
+Icon[pt_BR]=/home/nilson/Dropbox/GIT/youDown/icone/youDown.png
+Name[pt_BR]=youDown
+Exec=/usr/bin/youdown
+Comment[pt_BR]=Aplicativo para Dowload do Youtube
+Name=youDown
+Comment=Aplicativo para Dowload do Youtube
+Icon=/home/nilson/Dropbox/GIT/youDown/icone/youDown.png
